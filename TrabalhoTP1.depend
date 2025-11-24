@@ -1,0 +1,85 @@
+# depslib dependency file v1.0
+1763938958 source:/home/gusco/Documentos/TrabalhoTP1/dominios.cpp
+	"dominios.hpp"
+	<stdexcept>
+	<string>
+	<cctype>
+	<iostream>
+	<vector>
+	<algorithm>
+	<cmath>
+
+1763939431 /home/gusco/Documentos/TrabalhoTP1/dominios.hpp
+	<stdexcept>
+	<string>
+	<iostream>
+
+1762873895 source:/home/gusco/Documentos/TrabalhoTP1/entidades.cpp
+
+1763939008 source:/home/gusco/Documentos/TrabalhoTP1/servicos.cpp
+	"servicos.hpp"
+	"containers.hpp"
+	<iostream>
+	<list>
+	<string>
+	<vector>
+	<algorithm>
+
+1763938999 /home/gusco/Documentos/TrabalhoTP1/servicos.hpp
+	"interfaces.hpp"
+	"dominios.hpp"
+	<list>
+
+1763945746 /home/gusco/Documentos/TrabalhoTP1/interfaces.hpp
+	"entidades.hpp"
+	"dominios.hpp"
+	<list>
+
+1763938986 /home/gusco/Documentos/TrabalhoTP1/entidades.hpp
+	"dominios.hpp"
+	<string>
+
+1763939042 /home/gusco/Documentos/TrabalhoTP1/containers.hpp
+	"entidades.hpp"
+	<list>
+	<stdexcept>
+
+1763909421 source:/home/gusco/Documentos/TrabalhoTP1/testes.cpp
+	"testes.hpp"
+	<iostream>
+	<stdexcept>
+	<string>
+
+1763909743 /home/gusco/Documentos/TrabalhoTP1/testes.hpp
+	"dominios.hpp"
+	"entidades.hpp"
+	<stdexcept>
+	<string>
+
+1763945543 source:/home/gusco/Documentos/TrabalhoTP1/main.cpp
+	<iostream>
+	<stdexcept>
+	<locale.h>
+	"dominios.hpp"
+	"entidades.hpp"
+	"interfaces.hpp"
+	"containers.hpp"
+	"servicos.hpp"
+	"apresentacao.hpp"
+
+1763945616 /home/gusco/Documentos/TrabalhoTP1/apresentacao.hpp
+	"interfaces.hpp"
+	"dominios.hpp"
+	<iostream>
+
+1763945550 source:/home/gusco/Documentos/TrabalhoTP1/apresentacao.cpp
+	"apresentacao.hpp"
+	<iostream>
+	<stdexcept>
+	<limits>
+	<string>
+	<iomanip>
+
+1763939052 source:/home/gusco/Documentos/TrabalhoTP1/containers.cpp
+	"containers.hpp"
+

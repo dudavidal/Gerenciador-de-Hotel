@@ -37,10 +37,11 @@
 		<Unit filename="dominios.hpp" />
 		<Unit filename="entidades.cpp" />
 		<Unit filename="entidades.hpp" />
-		<Unit filename="interface.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="servicos.cpp" />
 		<Unit filename="servicos.hpp" />
+		<Unit filename="testes.cpp" />
+		<Unit filename="testes.hpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
