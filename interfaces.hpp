@@ -84,18 +84,17 @@ public:
  */
 class IAAutenticacao {
 public:
-    /**
-     * @brief Executa o fluxo de autenticação.
-     * @param email Referência para armazenar o email autenticado em caso de sucesso.
-     * @return true se o login foi bem sucedido, false caso contrário.
-     */
-    virtual bool executar(EMAIL& email) = 0;
+    virtual bool autenticar(EMAIL& email) = 0;
+
+    virtual bool cadastrar() = 0;
 
     /**
      * @brief Define o serviço de autenticação a ser utilizado.
      * @details Permite injetar a dependência do serviço (ISA).
      */
     virtual void setISAutenticacao(ISAutenticacao* servico) = 0;
+
+    virtual void setISPessoa(ISPessoa* servico) = 0;
 
     virtual ~IAAutenticacao() {}
 };
