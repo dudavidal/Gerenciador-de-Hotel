@@ -19,18 +19,21 @@ using namespace std;
 class CntrMAAutenticacao : public IAAutenticacao {
 private:
     ISAutenticacao* servicoAutenticacao;
+    ISPessoa* servicoPessoa;
 
 public:
-    // Implementação do método de injeção de dependência
     void setISAutenticacao(ISAutenticacao* servico) override {
         this->servicoAutenticacao = servico;
     }
 
-    // Implementação do fluxo principal
-    // Retorna true se autenticou, e preenche o objeto 'email' com o logado
-    bool executar(EMAIL& email) override;
-};
+    void setISPessoa(ISPessoa* servico) override {
+        this->servicoPessoa = servico;
+    }
 
+    bool autenticar(EMAIL& email) override;
+
+    bool cadastrar() override;
+};
 
 // ====================================================================
 // 2. CONTROLADORA DE APRESENTAÇÃO: PESSOAL (MAP)
