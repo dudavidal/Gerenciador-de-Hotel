@@ -9,7 +9,7 @@
 	<algorithm>
 	<cmath>
 
-1763939431 /home/gusco/Documentos/TrabalhoTP1/dominios.hpp
+1763948551 /home/gusco/Documentos/TrabalhoTP1/dominios.hpp
 	<stdexcept>
 	<string>
 	<iostream>
@@ -25,21 +25,21 @@
 	<vector>
 	<algorithm>
 
-1763938999 /home/gusco/Documentos/TrabalhoTP1/servicos.hpp
+1763948951 /home/gusco/Documentos/TrabalhoTP1/servicos.hpp
 	"interfaces.hpp"
 	"dominios.hpp"
 	<list>
 
-1763945746 /home/gusco/Documentos/TrabalhoTP1/interfaces.hpp
+1763948802 /home/gusco/Documentos/TrabalhoTP1/interfaces.hpp
 	"entidades.hpp"
 	"dominios.hpp"
 	<list>
 
-1763938986 /home/gusco/Documentos/TrabalhoTP1/entidades.hpp
+1763948700 /home/gusco/Documentos/TrabalhoTP1/entidades.hpp
 	"dominios.hpp"
 	<string>
 
-1763939042 /home/gusco/Documentos/TrabalhoTP1/containers.hpp
+1763948988 /home/gusco/Documentos/TrabalhoTP1/containers.hpp
 	"entidades.hpp"
 	<list>
 	<stdexcept>
@@ -67,12 +67,12 @@
 	"servicos.hpp"
 	"apresentacao.hpp"
 
-1763945616 /home/gusco/Documentos/TrabalhoTP1/apresentacao.hpp
+1763948974 /home/gusco/Documentos/TrabalhoTP1/apresentacao.hpp
 	"interfaces.hpp"
 	"dominios.hpp"
 	<iostream>
 
-1763945550 source:/home/gusco/Documentos/TrabalhoTP1/apresentacao.cpp
+1763948041 source:/home/gusco/Documentos/TrabalhoTP1/apresentacao.cpp
 	"apresentacao.hpp"
 	<iostream>
 	<stdexcept>
