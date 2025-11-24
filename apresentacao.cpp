@@ -92,7 +92,7 @@ void CntrMAPessoal::executar(const EMAIL& email) {
         cout << "Usuario Logado: " << email.getValor() << endl;
         cout << "-----------------------------------------\n";
         cout << "1 - Visualizar Meus Dados\n";
-        cout << "2 - Editar Perfil (Não implementado)\n";
+        cout << "2 - Editar Perfil\n";
         cout << "3 - Voltar ao Menu Principal\n";
         cout << "Selecione: ";
         cin >> opcao;
@@ -102,12 +102,12 @@ void CntrMAPessoal::executar(const EMAIL& email) {
         switch(opcao) {
             case 1: {
                 try {
-                    Gerente gerente = servicoPessoa->lerGerente(email);
-                    cout << "\n--- DADOS DO GERENTE ---\n";
-                    cout << "Nome:  " << gerente.getNome().getValor() << endl;
-                    cout << "Email: " << gerente.getEmail().getValor() << endl;
-                    cout << "Ramal: " << gerente.getRamal().getValor() << endl;
-                    cout << "Senha: *****" << endl;
+                    Gerente g = servicoPessoa->lerGerente(email);
+                    cout << "\n--- DADOS ATUAIS ---\n";
+                    cout << "Nome:  " << g.getNome().getValor() << endl;
+                    cout << "Email: " << g.getEmail().getValor() << endl;
+                    cout << "Ramal: " << g.getRamal().getValor() << endl;
+                    cout << "Senha: " << g.getSenha().getValor() << endl;
                 } catch (...) {
                     cout << "Erro ao recuperar dados do perfil." << endl;
                 }
@@ -115,17 +115,85 @@ void CntrMAPessoal::executar(const EMAIL& email) {
                 break;
             }
             case 2:
-                cout << "Funcionalidade de edicao em desenvolvimento." << endl;
-                esperarEnter();
+                // Chama a função de edição que implementamos abaixo
+                editarPerfil(email);
                 break;
-            case 3: break;
-            default: cout << "Opcao invalida." << endl;
+            case 3:
+                break;
+            default:
+                cout << "Opcao invalida." << endl;
         }
     }
 }
 
 void CntrMAPessoal::editarPerfil(const EMAIL& email) {
-    // Futura implementação
+    try {
+        // 1. Carrega os dados atuais do gerente para garantir que temos o objeto completo
+        Gerente gerenteAtual = servicoPessoa->lerGerente(email);
+
+        int opcao = 0;
+        while(opcao != 3) {
+            cout << "\n--- EDITAR PERFIL ---\n";
+            cout << "1 - Alterar Nome\n";
+            cout << "2 - Alterar Senha\n";
+            cout << "3 - Voltar\n";
+            cout << "Nota: Email (Chave Primaria) nao pode ser alterado.\n";
+            cout << "Selecione: ";
+            cin >> opcao;
+
+            if (cin.fail()) { cin.clear(); limparBuffer(); continue; }
+
+            if (opcao == 1) {
+                // --- ALTERAR NOME ---
+                string novoNomeStr;
+                cout << "Novo Nome (5-20 caracteres, Maiusc): ";
+                limparBuffer(); // Limpa o enter anterior
+                getline(cin, novoNomeStr);
+
+                try {
+                    Nome novoNome;
+                    novoNome.setValor(novoNomeStr); // Valida formato
+                    gerenteAtual.setNome(novoNome); // Atualiza objeto local
+
+                    // Persiste no "Banco de Dados"
+                    if(servicoPessoa->atualizarGerente(gerenteAtual)) {
+                        cout << "SUCESSO: Nome atualizado!\n";
+                    } else {
+                        cout << "ERRO: Falha ao atualizar no sistema.\n";
+                    }
+                } catch (const exception& e) {
+                    cout << "ERRO FORMATO: " << e.what() << endl;
+                }
+                esperarEnter();
+            }
+            else if (opcao == 2) {
+                // --- ALTERAR SENHA ---
+                string novaSenhaStr;
+                cout << "Nova Senha (5 chars, regras de complexidade): ";
+                cin >> novaSenhaStr;
+
+                try {
+                    Senha novaSenha;
+                    novaSenha.setValor(novaSenhaStr); // Valida formato
+                    gerenteAtual.setSenha(novaSenha); // Atualiza objeto local
+
+                    // Persiste no "Banco de Dados"
+                    if(servicoPessoa->atualizarGerente(gerenteAtual)) {
+                        cout << "SUCESSO: Senha atualizada!\n";
+                    } else {
+                        cout << "ERRO: Falha ao atualizar no sistema.\n";
+                    }
+                } catch (const exception& e) {
+                    cout << "ERRO FORMATO: " << e.what() << endl;
+                }
+                esperarEnter();
+            }
+        }
+
+    } catch (const exception& e) {
+        cout << "Erro critico ao acessar perfil: " << e.what() << endl;
+        esperarEnter();
+    }
 }
 
 // ====================================================================

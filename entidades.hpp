@@ -12,10 +12,12 @@ using namespace std;
 
 /**
  * @class Pessoa
- * @brief Entidade base que representa uma Pessoa no sistema.
+ * @brief Entidade base que representa uma Pessoa genérica no sistema.
  *
- * @details Esta classe define os atributos comuns a Gerentes e Hóspedes.
- * A chave primária (PK) do registro é o EMAIL.
+ * @details Esta classe serve como base para as entidades especializadas Gerente e Hóspede.
+ * Ela encapsula atributos comuns de identificação pessoal.
+ *
+ * A chave primária (PK) para identificação única de uma pessoa neste sistema é o EMAIL.
  */
 class Pessoa {
     private:
@@ -24,25 +26,26 @@ class Pessoa {
     public:
         /**
          * @brief Atribui o Nome da Pessoa.
-         * @param novoNome Objeto Domínio Nome.
+         * @param novoNome Objeto da classe de domínio Nome validado.
          */
         void setNome(const Nome& novoNome);
 
         /**
          * @brief Atribui o EMAIL da Pessoa.
-         * @param novoEmail Objeto Domínio EMAIL.
+         * @details O Email atua como identificador único (Chave Primária).
+         * @param novoEmail Objeto da classe de domínio EMAIL validado.
          */
         void setEmail(const EMAIL& novoEmail);
 
         /**
-         * @brief Retorna o Nome da Pessoa.
-         * @return O objeto Domínio Nome.
+         * @brief Recupera o Nome da Pessoa.
+         * @return Objeto Nome contendo o nome armazenado.
          */
         Nome getNome() const;
 
         /**
-         * @brief Retorna o EMAIL da Pessoa.
-         * @return O objeto Domínio EMAIL.
+         * @brief Recupera o EMAIL da Pessoa.
+         * @return Objeto EMAIL contendo o endereço de email armazenado.
          */
         EMAIL getEmail() const;
 };
@@ -65,9 +68,14 @@ inline EMAIL Pessoa::getEmail() const {
 
 /**
  * @class Gerente
- * @brief Entidade que representa o Gerente do sistema.
+ * @brief Entidade que representa o usuário administrativo do sistema (Gerente).
  *
- * @details Herda de Pessoa e adiciona atributos de acesso: Ramal e Senha.
+ * @details Herda de Pessoa e adiciona atributos específicos para controle de acesso
+ * e comunicação interna do hotel.
+ *
+ * Atributos adicionais:
+ * - Ramal: Para contato telefônico interno.
+ * - Senha: Para autenticação no sistema.
  */
 class Gerente : public Pessoa {
     private:
@@ -75,26 +83,26 @@ class Gerente : public Pessoa {
         Senha senha;
     public:
         /**
-         * @brief Atribui o Ramal de contato do Gerente.
-         * @param novoRamal Objeto Domínio Ramal.
+         * @brief Define o Ramal de contato do Gerente.
+         * @param novoRamal Objeto da classe de domínio Ramal.
          */
         void setRamal(const Ramal& novoRamal);
 
         /**
-         * @brief Atribui a Senha de acesso do Gerente.
-         * @param novaSenha Objeto Domínio Senha.
+         * @brief Define a Senha de acesso do Gerente.
+         * @param novaSenha Objeto da classe de domínio Senha.
          */
         void setSenha(const Senha& novaSenha);
 
         /**
-         * @brief Retorna o Ramal do Gerente.
-         * @return O objeto Domínio Ramal.
+         * @brief Recupera o Ramal do Gerente.
+         * @return Objeto Ramal.
          */
         Ramal getRamal() const;
 
         /**
-         * @brief Retorna a Senha do Gerente.
-         * @return O objeto Domínio Senha.
+         * @brief Recupera a Senha do Gerente.
+         * @return Objeto Senha.
          */
         Senha getSenha() const;
 };
@@ -117,10 +125,14 @@ inline Senha Gerente::getSenha() const{
 
 /**
  * @class Hospede
- * @brief Entidade que representa um Hóspede que fará reservas.
+ * @brief Entidade que representa um cliente (Hóspede) do hotel.
  *
- * @details Herda de Pessoa e adiciona atributos necessários para o registro e
- * pagamento: Endereço e Cartão.
+ * @details Herda de Pessoa e adiciona atributos necessários para o processo de
+ * reserva e faturamento.
+ *
+ * Atributos adicionais:
+ * - Endereço: Localização residencial do hóspede.
+ * - Cartão: Dados de pagamento.
  */
 class Hospede : public Pessoa {
     private:
@@ -128,26 +140,26 @@ class Hospede : public Pessoa {
         Cartao cartao;
     public:
         /**
-         * @brief Atribui o Endereço do Hóspede.
-         * @param novoEndereco Objeto Domínio Endereco.
+         * @brief Define o Endereço residencial do Hóspede.
+         * @param novoEndereco Objeto da classe de domínio Endereco.
          */
         void setEndereco(const Endereco& novoEndereco);
 
         /**
-         * @brief Atribui o Cartão do Hóspede.
-         * @param novoCartao Objeto Domínio Cartao.
+         * @brief Define os dados do Cartão de Crédito do Hóspede.
+         * @param novoCartao Objeto da classe de domínio Cartao.
          */
         void setCartao(const Cartao& novoCartao);
 
         /**
-         * @brief Retorna o Endereço do Hóspede.
-         * @return O objeto Domínio Endereco.
+         * @brief Recupera o Endereço do Hóspede.
+         * @return Objeto Endereco.
          */
         Endereco getEndereco() const;
 
         /**
-         * @brief Retorna o Cartão do Hóspede.
-         * @return O objeto Domínio Cartao.
+         * @brief Recupera os dados do Cartão do Hóspede.
+         * @return Objeto Cartao.
          */
         Cartao getCartao() const;
 };
@@ -174,10 +186,10 @@ inline Cartao Hospede::getCartao() const {
 
 /**
  * @class Hotel
- * @brief Entidade que representa um Hotel gerenciado pelo sistema.
+ * @brief Entidade que representa a unidade hoteleira gerenciada pelo sistema.
  *
- * @details Contém os dados de identificação e localização do hotel.
- * A chave primária (PK) do registro é o Codigo.
+ * @details Agrega as informações de identificação e contato do estabelecimento.
+ * A chave primária (PK) é o Código do hotel.
  */
 class Hotel {
     private:
@@ -187,32 +199,51 @@ class Hotel {
         Codigo codigo;
     public:
         /**
-         * @brief Atribui o Nome do Hotel.
-         * @param novoNome Objeto Domínio Nome.
+         * @brief Define o Nome fantasia do Hotel.
+         * @param novoNome Objeto da classe de domínio Nome.
          */
         void setNome(const Nome& novoNome);
 
         /**
-         * @brief Atribui o Endereço do Hotel.
-         * @param novoEndereco Objeto Domínio Endereco.
+         * @brief Define o Endereço físico do Hotel.
+         * @param novoEndereco Objeto da classe de domínio Endereco.
          */
         void setEndereco(const Endereco& novoEndereco);
 
         /**
-         * @brief Atribui o Telefone do Hotel.
-         * @param novoTelefone Objeto Domínio Telefone.
+         * @brief Define o Telefone de contato do Hotel.
+         * @param novoTelefone Objeto da classe de domínio Telefone.
          */
         void setTelefone(const Telefone& novoTelefone);
 
         /**
-         * @brief Atribui o Código do Hotel (PK).
-         * @param novoCodigo Objeto Domínio Codigo.
+         * @brief Define o Código identificador único do Hotel.
+         * @param novoCodigo Objeto da classe de domínio Codigo.
          */
         void setCodigo(const Codigo& novoCodigo);
 
+        /**
+         * @brief Recupera o Nome do Hotel.
+         * @return Objeto Nome.
+         */
         Nome getNome() const;
+
+        /**
+         * @brief Recupera o Endereço do Hotel.
+         * @return Objeto Endereco.
+         */
         Endereco getEndereco() const;
+
+        /**
+         * @brief Recupera o Telefone do Hotel.
+         * @return Objeto Telefone.
+         */
         Telefone getTelefone() const;
+
+        /**
+         * @brief Recupera o Código identificador do Hotel.
+         * @return Objeto Codigo.
+         */
         Codigo getCodigo() const;
 };
 
@@ -250,10 +281,10 @@ inline Codigo Hotel::getCodigo() const {
 
 /**
  * @class Quarto
- * @brief Entidade que representa um Quarto específico dentro de um Hotel.
+ * @brief Entidade que representa uma unidade de acomodação (Quarto).
  *
- * @details Contém as características e a diária do quarto.
- * O Número é a chave primária (PK) no contexto do Hotel.
+ * @details Contém as características físicas e financeiras do quarto.
+ * O Número é a chave primária (PK) no contexto de um hotel específico.
  */
 class Quarto {
     private:
@@ -263,32 +294,51 @@ class Quarto {
         Ramal ramal;
     public:
         /**
-         * @brief Atribui o Número do Quarto.
-         * @param novoNumero Objeto Domínio Numero.
+         * @brief Define o Número do Quarto.
+         * @param novoNumero Objeto da classe de domínio Numero.
          */
         void setNumero(const Numero& novoNumero);
 
         /**
-         * @brief Atribui a Capacidade máxima de pessoas do Quarto.
-         * @param novaCapacidade Objeto Domínio Capacidade.
+         * @brief Define a Capacidade máxima de hóspedes.
+         * @param novaCapacidade Objeto da classe de domínio Capacidade.
          */
         void setCapacidade(const Capacidade& novaCapacidade);
 
         /**
-         * @brief Atribui o valor da Diária do Quarto.
-         * @param novaDiaria Objeto Domínio Dinheiro.
+         * @brief Define o valor da Diária cobrada.
+         * @param novaDiaria Objeto da classe de domínio Dinheiro.
          */
         void setDiaria(const Dinheiro& novaDiaria);
 
         /**
-         * @brief Atribui o Ramal interno do Quarto.
-         * @param novoRamal Objeto Domínio Ramal.
+         * @brief Define o Ramal telefônico do quarto.
+         * @param novoRamal Objeto da classe de domínio Ramal.
          */
         void setRamal(const Ramal& novoRamal);
 
+        /**
+         * @brief Recupera o Número do Quarto.
+         * @return Objeto Numero.
+         */
         Numero getNumero() const;
+
+        /**
+         * @brief Recupera a Capacidade do Quarto.
+         * @return Objeto Capacidade.
+         */
         Capacidade getCapacidade() const;
+
+        /**
+         * @brief Recupera o valor da Diária.
+         * @return Objeto Dinheiro.
+         */
         Dinheiro getDiaria() const;
+
+        /**
+         * @brief Recupera o Ramal do Quarto.
+         * @return Objeto Ramal.
+         */
         Ramal getRamal() const;
 };
 
@@ -326,10 +376,10 @@ inline Ramal Quarto::getRamal() const {
 
 /**
  * @class Reserva
- * @brief Entidade que representa uma Reserva de Quarto.
+ * @brief Entidade que representa o contrato de hospedagem (Reserva).
  *
- * @details Contém os detalhes de datas e valores da reserva.
- * Código é a chave primária (PK).
+ * @details Agrega as informações temporais e financeiras da estadia.
+ * O Código é a chave primária (PK) única da reserva.
  */
 class Reserva {
     private:
@@ -339,32 +389,51 @@ class Reserva {
         Codigo codigo;
     public:
         /**
-         * @brief Atribui a Data de Chegada.
-         * @param novaChegada Objeto Domínio Data.
+         * @brief Define a Data de Check-in (Chegada).
+         * @param novaChegada Objeto da classe de domínio Data.
          */
         void setChegada(const Data& novaChegada);
 
         /**
-         * @brief Atribui a Data de Partida.
-         * @param novaPartida Objeto Domínio Data.
+         * @brief Define a Data de Check-out (Partida).
+         * @param novaPartida Objeto da classe de domínio Data.
          */
         void setPartida(const Data& novaPartida);
 
         /**
-         * @brief Atribui o Valor Total da Reserva.
-         * @param novoValor Objeto Domínio Dinheiro.
+         * @brief Define o Valor total da reserva.
+         * @param novoValor Objeto da classe de domínio Dinheiro.
          */
         void setValor(const Dinheiro& novoValor);
 
         /**
-         * @brief Atribui o Código da Reserva (PK).
-         * @param novoCodigo Objeto Domínio Codigo.
+         * @brief Define o Código identificador da reserva.
+         * @param novoCodigo Objeto da classe de domínio Codigo.
          */
         void setCodigo(const Codigo& novoCodigo);
 
+        /**
+         * @brief Recupera a Data de Chegada.
+         * @return Objeto Data.
+         */
         Data getChegada() const;
+
+        /**
+         * @brief Recupera a Data de Partida.
+         * @return Objeto Data.
+         */
         Data getPartida() const;
+
+        /**
+         * @brief Recupera o Valor total.
+         * @return Objeto Dinheiro.
+         */
         Dinheiro getValor() const;
+
+        /**
+         * @brief Recupera o Código da reserva.
+         * @return Objeto Codigo.
+         */
         Codigo getCodigo() const;
 };
 

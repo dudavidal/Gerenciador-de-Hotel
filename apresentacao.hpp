@@ -1,7 +1,7 @@
 #ifndef APRESENTACAO_HPP_INCLUDED
 #define APRESENTACAO_HPP_INCLUDED
 
-#include "interfaces.hpp" // Contém IAAutenticacao, IAPessoal, IAReserva
+#include "interfaces.hpp"
 #include "dominios.hpp"
 #include <iostream>
 
@@ -13,8 +13,9 @@ using namespace std;
 
 /**
  * @class CntrMAAutenticacao
- * @brief Implementa a interface IAAutenticacao (definida em interfaces.hpp).
- * @details Responsável por interagir com o usuário para Login e Cadastro.
+ * @brief Controlador de Apresentação para o módulo de Autenticação.
+ *
+ * @details Gerencia as telas de Login e Cadastro de novos gerentes.
  */
 class CntrMAAutenticacao : public IAAutenticacao {
 private:
@@ -31,9 +32,9 @@ public:
     }
 
     bool autenticar(EMAIL& email) override;
-
     bool cadastrar() override;
 };
+
 
 // ====================================================================
 // 2. CONTROLADORA DE APRESENTAÇÃO: PESSOAL (MAP)
@@ -41,8 +42,9 @@ public:
 
 /**
  * @class CntrMAPessoal
- * @brief Implementa a interface IAPessoal.
- * @details Responsável por mostrar dados do gerente e permitir edição/exclusão.
+ * @brief Controlador de Apresentação para o módulo Pessoal.
+ *
+ * @details Permite ao gerente visualizar e editar seus próprios dados cadastrais.
  */
 class CntrMAPessoal : public IAPessoal {
 private:
@@ -55,7 +57,10 @@ public:
 
     void executar(const EMAIL& email) override;
 
-    // Métodos auxiliares internos
+    /**
+     * @brief Método auxiliar para exibir o menu de edição de perfil.
+     * @param email Email do usuário logado.
+     */
     void editarPerfil(const EMAIL& email);
 };
 
@@ -66,13 +71,14 @@ public:
 
 /**
  * @class CntrMAReserva
- * @brief Implementa a interface IAReserva.
- * @details Gerencia Hotéis, Quartos e Reservas.
+ * @brief Controlador de Apresentação para o módulo de Reservas.
+ *
+ * @details Centraliza os menus de gestão de Hotéis, Quartos, Reservas e Hóspedes.
  */
 class CntrMAReserva : public IAReserva {
 private:
     ISReserva* servicoReserva;
-    ISPessoa* servicoPessoa; // Necessário para listar hóspedes ao criar reservas
+    ISPessoa* servicoPessoa;
 
 public:
     void setISReserva(ISReserva* servico) override {
@@ -85,7 +91,7 @@ public:
 
     void executar(const EMAIL& email) override;
 
-    // Métodos auxiliares para organizar o menu interno
+    // Submenus auxiliares para organização da UI
     void menuHoteis();
     void menuQuartos();
     void menuReservas();
@@ -99,29 +105,30 @@ public:
 
 /**
  * @class CntrMAIntegracao
- * @brief Módulo de Acesso e Interface (Hub Principal).
- * @details Não herda de interface específica, pois é o ponto de entrada (main).
+ * @brief Controlador Principal de Integração (Módulo de Acesso e Interface).
+ *
+ * @details Atua como o "Hub" central da aplicação, orquestrando a navegação
+ * entre a tela inicial, login e os menus funcionais. Mantém o estado da sessão.
  */
 class CntrMAIntegracao {
 private:
-    // Referências para as interfaces dos módulos de apresentação
     IAAutenticacao* cntrAutenticacao;
     IAPessoal* cntrPessoal;
     IAReserva* cntrReserva;
 
-    // Estado do usuário logado
     EMAIL emailUsuarioLogado;
     bool autenticado;
 
 public:
     CntrMAIntegracao() : autenticado(false) {}
 
-    // Injeção das controladoras de apresentação
     void setCntrAutenticacao(IAAutenticacao* cntr) { this->cntrAutenticacao = cntr; }
     void setCntrPessoal(IAPessoal* cntr) { this->cntrPessoal = cntr; }
     void setCntrReserva(IAReserva* cntr) { this->cntrReserva = cntr; }
 
-    // Loop principal do sistema
+    /**
+     * @brief Inicia o loop principal da aplicação.
+     */
     void executar();
 };
 
