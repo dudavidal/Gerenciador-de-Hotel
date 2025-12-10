@@ -1,0 +1,134 @@
+# depslib dependency file v1.0
+1763850628 source:/home/duda/Documentos/ProjetoHotelar/dominios.cpp
+	"dominios.hpp"
+	<stdexcept>
+	<string>
+	<cctype>
+	<algorithm>
+
+1763830757 /home/duda/Documentos/ProjetoHotelar/dominios.hpp
+	<string>
+	<stdexcept>
+	<cctype>
+
+1763758797 source:/home/duda/Documentos/ProjetoHotelar/main.cpp
+
+1763866260 source:/home/duda/Documentos/ProjetoHotelar/ContainerGerente.cpp
+	"ContainerGerente.hpp"
+	<vector>
+
+1763866115 /home/duda/Documentos/ProjetoHotelar/ContainerGerente.hpp
+	"entidades.hpp"
+	"ContainerHotel.hpp"
+	<map>
+	<vector>
+
+1763863150 /home/duda/Documentos/ProjetoHotelar/entidades.hpp
+	"dominios.hpp"
+	<stdexcept>
+	<string>
+	<cctype>
+
+1763473786 source:/home/duda/Documentos/ProjetoHotelar/ControladoraPessoal.cpp
+	"ControladoraPessoal.hpp"
+	<iostream>
+
+1763306124 /home/duda/Documentos/ProjetoHotelar/ControladoraPessoal.hpp
+	"interfaces.hpp"
+	"entidades.hpp"
+	<iostream>
+	<stdexcept>
+
+1763767704 /home/duda/Documentos/ProjetoHotelar/interfaces.hpp
+	"entidades.hpp"
+	<string>
+
+1763833330 source:/home/duda/Documentos/ProjetoHotelar/CntrAprPessoal.cpp
+	"CntrAprPessoal.hpp"
+	<iostream>
+	<limits>
+
+1763753873 /home/duda/Documentos/ProjetoHotelar/CntrAprPessoal.hpp
+	"interfaces.hpp"
+	"entidades.hpp"
+	<iostream>
+
+1763864287 /home/duda/Documentos/ProjetoHotelar/ContainerHotel.hpp
+	"entidades.hpp"
+	<map>
+
+1763757501 /home/duda/Documentos/ProjetoHotelar/CntrServPessoal.hpp
+	"interfaces.hpp"
+	"entidades.hpp"
+	"ContainerGerente.hpp"
+
+1763866559 source:/home/duda/Documentos/ProjetoHotelar/ContainerHotel.cpp
+	"ContainerHotel.hpp"
+	"ContainerGerente.hpp"
+	"ContainerQuarto.hpp"
+
+1763866124 source:/home/duda/Documentos/ProjetoHotelar/CntrServPessoal.cpp
+	"CntrServPessoal.hpp"
+	"ContainerGerente.hpp"
+
+1763832628 source:/home/duda/Documentos/ProjetoHotelar/CntrMai.cpp
+	<iostream>
+	<string>
+	<limits>
+	"CntrIUAutenticacao.hpp"
+	"LNAutenticacao.hpp"
+	"ContainerGerente.hpp"
+	"CntrAprPessoal.hpp"
+	"CntrServPessoal.hpp"
+
+1763766109 /home/duda/Documentos/ProjetoHotelar/CntrAprAutenticacao.hpp
+	"interfaces.hpp"
+	"entidades.hpp"
+
+1763764744 /home/duda/Documentos/ProjetoHotelar/CntrServAutenticacao.hpp
+	"interfaces.hpp"
+
+1763862640 source:/home/duda/Documentos/ProjetoHotelar/CntrServAutenticacao.cpp
+
+1763767718 source:/home/duda/Documentos/ProjetoHotelar/CntrIUAutenticacao.cpp
+	"CntrIUAutenticacao.hpp"
+	<iostream>
+
+1763768956 /home/duda/Documentos/ProjetoHotelar/CntrIUAutenticacao.hpp
+	"interfaces.hpp"
+	"entidades.hpp"
+
+1763865277 source:/home/duda/Documentos/ProjetoHotelar/LNAutenticacao.cpp
+	"LNAutenticacao.hpp"
+
+1763768945 /home/duda/Documentos/ProjetoHotelar/LNAutenticacao.hpp
+	"interfaces.hpp"
+	"ContainerGerente.hpp"
+	"entidades.hpp"
+
+1763864687 source:/home/duda/Documentos/ProjetoHotelar/ContainerHospede.cpp
+	"ContainerHospede.hpp"
+	"ContainerReserva.hpp"
+
+1763864706 /home/duda/Documentos/ProjetoHotelar/ContainerHospede.hpp
+	"entidades.hpp"
+	<map>
+
+1763866704 source:/home/duda/Documentos/ProjetoHotelar/ContainerQuarto.cpp
+	"ContainerQuarto.hpp"
+	"ContainerReserva.hpp"
+	"ContainerHotel.hpp"
+
+1763866557 /home/duda/Documentos/ProjetoHotelar/ContainerQuarto.hpp
+	"entidades.hpp"
+	<map>
+
+1763864856 source:/home/duda/Documentos/ProjetoHotelar/ContainerReserva.cpp
+	"ContainerReserva.hpp"
+	"ContainerHospede.hpp"
+	"ContainerQuarto.hpp"
+
+1763864591 /home/duda/Documentos/ProjetoHotelar/ContainerReserva.hpp
+	"entidades.hpp"
+	<map>
+
